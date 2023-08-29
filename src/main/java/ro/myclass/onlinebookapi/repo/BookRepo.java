@@ -44,6 +44,7 @@ public interface BookRepo extends JpaRepository<Book,Long> {
     @Query("select b from Book b where b.name = ?1 AND b.author = ?2 AND b.genre = ?3")
     Optional<Book> getBookByNameAndAuthorAndGenre(String name,String author,String genre);
 
-    
 
+    @Query("select b from Book b ")
+    List<Book> getAllBooks();
 }
