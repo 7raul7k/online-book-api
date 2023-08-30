@@ -166,5 +166,14 @@ public class BookService {
         }
     }
 
+    public Book getBookById(long id){
+        Optional<Book> book = bookRepo.getBookById(id);
+        if(book.isEmpty()){
+            throw new BookNotFoundException();
+        }else{
+            return book.get();
+        }
+    }
+
 
 }

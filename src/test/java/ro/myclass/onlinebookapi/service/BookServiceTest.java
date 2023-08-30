@@ -495,7 +495,117 @@ class BookServiceTest {
               assertThrows(Exception.class,()->bookService.getBookByGenreAndYear("genre",2000));
        }
 
+       @Test
+        public void getBookByNameAndAuthor(){
+                Book book = Book.builder()
+                        .name("name")
+                        .author("author")
+                        .genre("genre")
+                        .year(2001)
+                        .build();
 
+                doReturn(Optional.of(book)).when(bookRepo).getBookByNameAndAuthor(book.getName(),book.getAuthor());
 
+                assertEquals(book,bookService.getBookByNameAndAuthor(book.getName(),book.getAuthor()));
+       }
+
+       @Test
+        public void getBookByNameAndAuthorError() {
+             Book book = Book.builder()
+                     .name("name")
+                     .author("author")
+                     .genre("genre")
+                     .year(2001)
+                     .build();
+
+             doReturn(Optional.empty()).when(bookRepo).getBookByNameAndAuthor(book.getName(), book.getAuthor());
+
+             assertThrows(Exception.class, () -> bookService.getBookByNameAndAuthor(book.getName(), book.getAuthor()));
+
+         }
+
+         @Test
+         public void getBookByNameAndAuthorAndYear(){
+                    Book book = Book.builder()
+                            .name("name")
+                            .author("author")
+                            .genre("genre")
+                            .year(2001)
+                            .build();
+
+                    doReturn(Optional.of(book)).when(bookRepo).getBookByNameAndAuthorAndYear(book.getName(),book.getAuthor(),book.getYear());
+
+                    assertEquals(book,bookService.getBookByNameAndAuthorAndYear(book.getName(),book.getAuthor(),book.getYear()));
+        }
+
+        @Test
+        public void getBookByNameAndAuthorAndYearError(){
+                Book book = Book.builder()
+                        .name("name")
+                        .author("author")
+                        .genre("genre")
+                        .year(2001)
+                        .build();
+
+                doReturn(Optional.empty()).when(bookRepo).getBookByNameAndAuthorAndYear(book.getName(),book.getAuthor(),book.getYear());
+
+                assertThrows(Exception.class,()->bookService.getBookByNameAndAuthorAndYear(book.getName(),book.getAuthor(),book.getYear()));
+        }
+
+        @Test
+        public void getBookByNameAndAuthorAndGenre(){
+                Book book = Book.builder()
+                        .name("name")
+                        .author("author")
+                        .genre("genre")
+                        .year(2001)
+                        .build();
+
+                doReturn(Optional.of(book)).when(bookRepo).getBookByNameAndAuthorAndGenre(book.getName(),book.getAuthor(),book.getGenre());
+
+                assertEquals(book,bookService.getBookByNameAndAuthorAndGenre(book.getName(),book.getAuthor(),book.getGenre()));
+        }
+
+        @Test
+        public void getBookByNameAndAuthorAndGenreError(){
+                Book book = Book.builder()
+                        .name("name")
+                        .author("author")
+                        .genre("genre")
+                        .year(2001)
+                        .build();
+
+                doReturn(Optional.empty()).when(bookRepo).getBookByNameAndAuthorAndGenre(book.getName(),book.getAuthor(),book.getGenre());
+
+                assertThrows(Exception.class,()->bookService.getBookByNameAndAuthorAndGenre(book.getName(),book.getAuthor(),book.getGenre()));
+        }
+
+        @Test
+        public void getBookById(){
+                Book book = Book.builder()
+                        .name("name")
+                        .author("author")
+                        .genre("genre")
+                        .year(2001)
+                        .build();
+
+                doReturn(Optional.of(book)).when(bookRepo).getBookById(book.getId());
+
+                assertEquals(book,bookService.getBookById(book.getId()));
+        }
+
+        @Test
+        public void getBookByIdError(){
+                Book book = Book.builder()
+                        .name("name")
+                        .author("author")
+                        .genre("genre")
+                        .year(2001)
+                        .build();
+
+                doReturn(Optional.empty()).when(bookRepo).getBookById(book.getId());
+
+                assertThrows(Exception.class,()->bookService.getBookById(book.getId()));
+        }
 
 }
