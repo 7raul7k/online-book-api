@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/books")
 @Slf4j
+@CrossOrigin
 public class BookResource {
 
     private BookService bookService;
@@ -31,11 +32,13 @@ public class BookResource {
         return new ResponseEntity<>(bookList, HttpStatus.OK);
     }
 
-    @PutMapping("/addBook")
-    public ResponseEntity<String> addBook(@RequestBody BookDTO book) {
+    @PostMapping("/addBook")
+    public ResponseEntity<String> addBook(@RequestBody BookDTO book) throws InterruptedException {
         this.bookService.addBook(book);
 
         log.info("REST request to add a book {}", book);
+
+        Thread.sleep(5000);
 
         return new ResponseEntity<>("Book was added", HttpStatus.OK);
     }
